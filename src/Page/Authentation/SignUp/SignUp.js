@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
 import useToken from "../../../Hooks/useToken";
@@ -57,6 +58,9 @@ const SignUp = () => {
               .then((data) => {
                 console.log(data);
                 setCreatedUserJwt(signUp.email);
+                if (data.acknowledged) {
+                  toast.success("Create User Successfully");
+                }
               });
           });
         });

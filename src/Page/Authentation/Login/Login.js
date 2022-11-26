@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
+import useToken from "../../../Hooks/useToken";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  const [loginJwt, setLoginJwt] = useState("");
+  const [token] = useToken(loginJwt);
+  const navigate = useNavigate();
+  if (token) {
+    navigate("/");
+  }
   const {
     register,
     handleSubmit,
@@ -13,6 +20,7 @@ const Login = () => {
   const handleLogin = (userLogin) => {
     loginUser(userLogin.email, userLogin.password).then((res) => {
       const user = res.user;
+      setLoginJwt(userLogin.email);
       console.log(user);
     });
     console.log(userLogin);

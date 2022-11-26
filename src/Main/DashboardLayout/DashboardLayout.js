@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Navber from "../../Share/Navber";
 import { FaBars } from "react-icons/fa";
 import Footer from "../../Share/Footer";
+import { AuthContext } from "../../Context/AuthProvider";
+import useAdmin from "../../Hooks/useAdmin";
 const DashboardLayout = () => {
+  const { user } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
   return (
     <div>
       <Navber></Navber>
@@ -39,12 +43,16 @@ const DashboardLayout = () => {
             <li className="hover:text-primary">
               <Link>My Product</Link>
             </li>
-            <li className="hover:text-primary">
-              <Link to="/dashboard/allSeller">All Sellers</Link>
-            </li>
-            <li className="hover:text-primary">
-              <Link to="/dashboard/allBuyer">All Buyers</Link>
-            </li>
+            {isAdmin && (
+              <>
+                <li className="hover:text-primary">
+                  <Link to="/dashboard/allSeller">All Sellers</Link>
+                </li>
+                <li className="hover:text-primary">
+                  <Link to="/dashboard/allBuyer">All Buyers</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
