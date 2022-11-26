@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
 import useToken from "../../../Hooks/useToken";
+import Loading from "../../../Loading/Loading";
 
 const SignUp = () => {
   const { createUsersEmail, updateUser } = useContext(AuthContext);
@@ -76,6 +77,7 @@ const SignUp = () => {
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
+
               <input
                 {...register("name")}
                 type="text"
@@ -135,6 +137,7 @@ const SignUp = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn text-white btn-primary">SignUp</button>
+              <Loading></Loading>
             </div>
           </div>
         </form>
