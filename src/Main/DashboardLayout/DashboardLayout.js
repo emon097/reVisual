@@ -5,9 +5,13 @@ import { FaBars } from "react-icons/fa";
 import Footer from "../../Share/Footer";
 import { AuthContext } from "../../Context/AuthProvider";
 import useAdmin from "../../Hooks/useAdmin";
+import useSeller from "../../Page/Headers/Dashboard/AllBuyer/userRole/useSeller";
+import useBuyer from "../../Page/Headers/Dashboard/AllBuyer/userRole/useBuyer";
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] = useSeller(user?.email);
+  const [isBuyer] = useBuyer(user?.email);
   return (
     <div>
       <Navber></Navber>
@@ -28,21 +32,29 @@ const DashboardLayout = () => {
         <div className="drawer-side  ">
           <label htmlFor="my-drawer" className="drawer-overlay"></label>
           <ul className="menu bg-accent p-4 w-80  ">
-            <li className="hover:text-primary">
-              <Link to="/dashboard/myOrder"> My Order</Link>
-            </li>
-            <li className="hover:text-primary">
-              <Link> My Whistlist</Link>
-            </li>
-            <li className="hover:text-primary">
-              <Link to="/dashboard/addProduct">Add Product</Link>
-            </li>
-            <li className="hover:text-primary">
-              <Link>My Product</Link>
-            </li>
-            <li className="hover:text-primary">
-              <Link>My Product</Link>
-            </li>
+            {isBuyer && (
+              <>
+                <li className="hover:text-primary">
+                  <Link to="/dashboard/myOrder"> My Order</Link>
+                </li>
+                <li className="hover:text-primary">
+                  <Link> My Whistlist</Link>
+                </li>
+              </>
+            )}
+            {isSeller && (
+              <>
+                <li className="hover:text-primary">
+                  <Link to="/dashboard/addProduct">Add Product</Link>
+                </li>
+                <li className="hover:text-primary">
+                  <Link>My Product</Link>
+                </li>
+                <li className="hover:text-primary">
+                  <Link>My Buyer</Link>
+                </li>
+              </>
+            )}
             {isAdmin && (
               <>
                 <li className="hover:text-primary">
