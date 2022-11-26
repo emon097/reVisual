@@ -31,7 +31,7 @@ const Navber = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 text-white bg-secondary"
             >
               <li>
                 <Link to="/"> Home </Link>
@@ -48,8 +48,8 @@ const Navber = () => {
             ReVisual
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
+        <div className="navbar-center  hidden lg:flex">
+          <ul className="menu menu-horizontal p-0 ">
             <li>
               <Link to="/"> Home </Link>
             </li>

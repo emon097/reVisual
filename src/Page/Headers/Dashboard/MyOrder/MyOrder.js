@@ -13,9 +13,12 @@ const MyOrder = () => {
       });
   }, [user?.email]);
   return (
-    <div className="w-full">
-      <div className="overflow-x-auto mx-28 ">
-        <table className="table table-zebra w-full">
+    <div className="w-full md:mx-28 lg:mx-28">
+      <h1 className="text-3xl bg-primary my-10 p-4 w-60 rounded-lg font-semibold text-white">
+        My Order
+      </h1>
+      <div className="overflow-x-auto w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>
@@ -31,7 +34,7 @@ const MyOrder = () => {
               <tr>
                 <th>{i + 1}</th>
                 <th> {myOrders.productName}</th>
-                <th>{myOrders.productName}</th>
+                <th>{myOrders.condition}</th>
                 <th>{myOrders.phoneNo}</th>
                 <th>${myOrders.sellingPrice}</th>
                 <th>
