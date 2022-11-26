@@ -15,6 +15,7 @@ import AllBuyer from "./Page/Headers/Dashboard/AllBuyer/AllBuyer";
 import AdminRoute from "./route/AdminRoute/AdminRoute";
 import SellerRoute from "./Page/Headers/Dashboard/AllBuyer/SellerRoute/SellerRoute";
 import BuyerRoute from "./Page/Headers/Dashboard/AllBuyer/BuyerRoute/BuyerRoute";
+import PrivetRoute from "./route/PrivetRoute/PrivetRoute";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,7 +33,12 @@ function App() {
             fetch(
               `http://localhost:5000/allProduct?category=${params.category}`
             ),
-          element: <CategoryAllProduct></CategoryAllProduct>,
+          element: (
+            <PrivetRoute>
+              {" "}
+              <CategoryAllProduct></CategoryAllProduct>{" "}
+            </PrivetRoute>
+          ),
         },
         {
           path: "/login",
@@ -46,7 +52,11 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: <DashboardLayout></DashboardLayout>,
+      element: (
+        <PrivetRoute>
+          <DashboardLayout></DashboardLayout>
+        </PrivetRoute>
+      ),
       children: [
         {
           path: "/dashboard",

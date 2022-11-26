@@ -1,5 +1,6 @@
 import React from "react";
 import Category from "../Category/Category";
+import ExtraFeature from "../ExtraFeature/ExtraFeature";
 
 const Headers = () => {
   return (
@@ -60,6 +61,7 @@ const Headers = () => {
         </form>
       </div>
       <Category></Category>
+      <ExtraFeature></ExtraFeature>
     </div>
   );
 };
