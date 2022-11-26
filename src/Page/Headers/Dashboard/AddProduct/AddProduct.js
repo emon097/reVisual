@@ -44,6 +44,7 @@ const AddProduct = () => {
           sellingPrice: data.sellingPrice,
           image,
           sellerName: user?.displayName,
+          email: user?.email,
           sellerAvatar: user?.photoURL,
         };
         console.log(allUser);
@@ -64,7 +65,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="bg-accent my-16 p-5 rounded-xl ">
+    <div className="bg-accent my-16 p-5 rounded-xl mx-28 ">
       <form onSubmit={handleSubmit(handleProduct)}>
         <div class="grid md:grid-cols-2 md:gap-6">
           <div class="relative z-0 mb-6 w-full group">
