@@ -13,6 +13,8 @@ import MyOrder from "./Page/Headers/Dashboard/MyOrder/MyOrder";
 import AllSeller from "./Page/Headers/Dashboard/AllSeller/AllSeller";
 import AllBuyer from "./Page/Headers/Dashboard/AllBuyer/AllBuyer";
 import AdminRoute from "./route/AdminRoute/AdminRoute";
+import SellerRoute from "./Page/Headers/Dashboard/AllBuyer/SellerRoute/SellerRoute";
+import BuyerRoute from "./Page/Headers/Dashboard/AllBuyer/BuyerRoute/BuyerRoute";
 
 function App() {
   const router = createBrowserRouter([
@@ -54,11 +56,20 @@ function App() {
         },
         {
           path: "/dashboard/addProduct",
-          element: <AddProduct></AddProduct>,
+          element: (
+            <SellerRoute>
+              <AddProduct></AddProduct>
+            </SellerRoute>
+          ),
         },
         {
           path: "/dashboard/myOrder",
-          element: <MyOrder></MyOrder>,
+          element: (
+            <BuyerRoute>
+              {" "}
+              <MyOrder></MyOrder>{" "}
+            </BuyerRoute>
+          ),
         },
         {
           path: "/dashboard/allBuyer",

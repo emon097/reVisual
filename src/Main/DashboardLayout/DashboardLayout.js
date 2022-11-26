@@ -17,7 +17,6 @@ const DashboardLayout = () => {
       <Navber></Navber>
       <div className="drawer bg-secondary ">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-
         <div className="drawer-content mx-3 my-3">
           <label
             htmlFor="my-drawer"
