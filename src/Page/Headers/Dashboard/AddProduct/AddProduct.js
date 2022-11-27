@@ -14,22 +14,23 @@ const AddProduct = () => {
   } = useForm();
 
   const [category, setCategory] = useState([]);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     fetch("http://localhost:5000/category")
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, []);
-  const { data: allSeller = [], refetch } = useQuery({
-    queryKey: ["Seller"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?role=Seller");
-      const data = await res.json();
-      console.log(data);
-      return data;
-    },
-  });
 
-  const { user } = useContext(AuthContext);
+  // const { data: allSeller = [], refetch } = useQuery({
+  //   queryKey: ["verification"],
+  //   queryFn: async () => {
+  //     const res = await fetch(`http://localhost:5000/verification?email=${}`);
+  //     const data = await res.json();
+  //     console.log(data);
+  //     return data;
+  //   },
+  // });
+
   const handleProduct = (data) => {
     const image = data.image[0];
     const formData = new FormData();

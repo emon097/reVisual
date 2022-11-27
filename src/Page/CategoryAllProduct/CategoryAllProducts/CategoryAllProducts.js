@@ -19,6 +19,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
     sellerAvatar,
     sellerName,
     dates,
+    allSeller,
     _id,
   } = allProduct;
   const [bookingBtn, setBookingBtn] = useState();
@@ -54,8 +55,10 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
 
             <div class="font-medium dark:text-white">
               <div className="flex items-center">
-                {sellerName}{" "}
-                <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
+                {sellerName}
+                {allSeller.Verification !== "verified" && (
+                  <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
+                )}
               </div>
               <div class="text-sm text-gray-500 dark:text-gray-400">
                 Posted Date: {dates}
