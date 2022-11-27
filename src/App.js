@@ -17,6 +17,7 @@ import SellerRoute from "./Page/Headers/Dashboard/AllBuyer/SellerRoute/SellerRou
 import BuyerRoute from "./Page/Headers/Dashboard/AllBuyer/BuyerRoute/BuyerRoute";
 import PrivetRoute from "./route/PrivetRoute/PrivetRoute";
 import Page from "./Page/Page/Page";
+import MyProduct from "./Page/Headers/Dashboard/MyProduct/MyProduct";
 
 function App() {
   const router = createBrowserRouter([
@@ -85,6 +86,14 @@ function App() {
             <AdminRoute>
               <AllBuyer></AllBuyer>
             </AdminRoute>
+          ),
+        },
+        {
+          path: "/dashboard/myProduct",
+          element: (
+            <SellerRoute>
+              <MyProduct></MyProduct>
+            </SellerRoute>
           ),
         },
         {

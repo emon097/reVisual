@@ -9,9 +9,9 @@ const Navber = () => {
     logOut().then();
   };
   return (
-    <div>
-      <div className="navbar bg-secondary text-white">
-        <div className="navbar-start">
+    <div className="sticky">
+      <div className="navbar bg-secondary   text-white">
+        <div className="navbar-start ">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg

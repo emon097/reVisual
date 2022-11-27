@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { FaCheckCircle, FaLocationArrow } from "react-icons/fa";
 import { AuthContext } from "../../../Context/AuthProvider";
@@ -19,11 +20,24 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
     sellerAvatar,
     sellerName,
     dates,
-    allSeller,
+    verified,
     _id,
   } = allProduct;
   const [bookingBtn, setBookingBtn] = useState();
   const { user } = useContext(AuthContext);
+
+  const { data: allSeller = [], refetch } = useQuery({
+    queryKey: ["verification"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/verification?email=${user?.email}`
+      );
+      const data = await res.json();
+      console.log(data);
+      return data;
+    },
+  });
+
   return (
     <div>
       <div className="w-full my-9 bg-white rounded-lg shadow-md dark:bg-secondary dark:border-gray-700">
@@ -56,9 +70,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
             <div class="font-medium dark:text-white">
               <div className="flex items-center">
                 {sellerName}
-                {allSeller.Verification !== "verified" && (
-                  <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
-                )}
+                <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
               </div>
               <div class="text-sm text-gray-500 dark:text-gray-400">
                 Posted Date: {dates}
@@ -73,8 +85,9 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
           </div>
           <div className="flex bg-secondary p-3 rounded-lg mt-5 justify-between items-center">
             <div className="flex text-white item-center justify-center">
-              <FaLocationArrow className="mt-1 mx-1"></FaLocationArrow>
-
+              {verified !== "verified" && (
+                <FaLocationArrow className="mt-1 mx-1"></FaLocationArrow>
+              )}
               <p className="text-sm ">Location: {location}</p>
             </div>
             <div className="text-sm flex text-white">

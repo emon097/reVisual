@@ -20,7 +20,6 @@ const SignUp = () => {
     navigate("/");
   }
   const handleSignUp = (signUp) => {
-    console.log(signUp);
     createUsersEmail(signUp.email, signUp.password).then((res) => {
       const user = res.user;
       console.log(user);
@@ -47,7 +46,6 @@ const SignUp = () => {
               email: signUp.email,
               role: signUp.role,
             };
-            console.log(userFullInfo);
             fetch("http://localhost:5000/users", {
               method: "POST",
               headers: {
@@ -67,7 +65,6 @@ const SignUp = () => {
         });
     });
   };
-
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -77,8 +74,8 @@ const SignUp = () => {
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
-
               <input
+                required
                 {...register("name")}
                 type="text"
                 placeholder="Enter Your Name"
@@ -89,13 +86,14 @@ const SignUp = () => {
               <label className="label">
                 <span className="label-text">Upload Your Profile Image</span>
               </label>
-              <input {...register("image")} type="file" />
+              <input required {...register("image")} type="file" />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
+                required
                 {...register("email")}
                 type="text"
                 placeholder="email"
@@ -107,6 +105,7 @@ const SignUp = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                required
                 {...register("password")}
                 type="text"
                 placeholder="password"
@@ -116,8 +115,8 @@ const SignUp = () => {
                 {...register("role")}
                 className="select my-7 w-full max-w-xs text-white bg-secondary "
               >
-                <option>Seller</option>
                 <option>Buyer</option>
+                <option>Seller</option>
               </select>
               <label className="label">
                 <Link href="#" className="label-text-alt link link-hover">

@@ -1,4 +1,5 @@
 import React from "react";
+import Advertisement from "../../Advertisement/Advertisement";
 import Category from "../Category/Category";
 import ExtraFeature from "../ExtraFeature/ExtraFeature";
 
@@ -62,6 +63,7 @@ const Headers = () => {
       </div>
       <Category></Category>
       <ExtraFeature></ExtraFeature>
+      <Advertisement></Advertisement>
     </div>
   );
 };

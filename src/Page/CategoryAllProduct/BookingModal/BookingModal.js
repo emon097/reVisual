@@ -141,9 +141,8 @@ const BookingModal = ({ modalAllProduct }) => {
                   />
                   <div class="font-medium dark:text-white">
                     <div className="flex items-center">
-                      {" "}
                       Seller Name: {sellerName}{" "}
-                      <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>{" "}
+                      <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
                     </div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">
                       Seller Phone No: {phoneNo}

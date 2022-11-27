@@ -60,13 +60,6 @@ const ExtraFeature = () => {
               </li>
             </ul>
           </p>
-          <a
-            href="/"
-            aria-label=""
-            className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-          >
-            Learn more
-          </a>
         </div>
       </div>
     </div>
