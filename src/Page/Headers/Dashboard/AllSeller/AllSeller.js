@@ -32,7 +32,7 @@ const AllSeller = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          toast.success("Seller  SuccessFully");
+          toast.success("Seller Verified SuccessFully");
         }
         refetch();
       });
