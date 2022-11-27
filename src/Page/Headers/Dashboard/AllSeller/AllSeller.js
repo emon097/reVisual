@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { FaCheckCircle } from "react-icons/fa";
 
 const AllSeller = () => {
   const { data: allSeller = [], refetch } = useQuery({
@@ -7,6 +9,7 @@ const AllSeller = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/users?role=Seller");
       const data = await res.json();
+      console.log(data);
       return data;
     },
   });
@@ -18,6 +21,20 @@ const AllSeller = () => {
       .then((data) => {
         refetch();
         console.log(data);
+      });
+  };
+
+  const userVerified = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Seller  SuccessFully");
+        }
+        refetch();
       });
   };
 
@@ -34,6 +51,7 @@ const AllSeller = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
+              <th>Verification</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -58,6 +76,23 @@ const AllSeller = () => {
                 </td>
                 <td>{allBuyers.email}</td>
                 <td>{allBuyers.role}</td>
+                <td>
+                  <button onClick={() => userVerified(allBuyers._id)}>
+                    {allBuyers.Verification ? (
+                      <>
+                        <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        <button className="btn btn-xs btn-primary">
+                          Verification Pending
+                        </button>{" "}
+                      </>
+                    )}
+                  </button>
+                </td>
+
                 <th>
                   <button
                     onClick={() => handleSellersDelete(allBuyers._id)}

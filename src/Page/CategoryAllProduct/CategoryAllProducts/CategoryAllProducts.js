@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FaLocationArrow } from "react-icons/fa";
+import { FaCheckCircle, FaLocationArrow } from "react-icons/fa";
 import { AuthContext } from "../../../Context/AuthProvider";
 import BookingModal from "../BookingModal/BookingModal";
 
@@ -18,13 +18,14 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
     sellingPrice,
     sellerAvatar,
     sellerName,
+    dates,
     _id,
   } = allProduct;
   const [bookingBtn, setBookingBtn] = useState();
   const { user } = useContext(AuthContext);
   return (
     <div>
-      <div className="w-full my-14 bg-white rounded-lg shadow-md dark:bg-secondary dark:border-gray-700">
+      <div className="w-full my-9 bg-white rounded-lg shadow-md dark:bg-secondary dark:border-gray-700">
         <img className="p-8 rounded-t-lg" src={image} alt="img" />
         <div className="px-5 pb-5">
           <div>
@@ -50,17 +51,21 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
           </div>
           <div class="flex mt-5 items-center space-x-4">
             <img class="w-10 h-10 rounded-full" src={sellerAvatar} alt="" />
+
             <div class="font-medium dark:text-white">
-              <div>{sellerName}</div>
+              <div className="flex items-center">
+                {sellerName}{" "}
+                <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
+              </div>
               <div class="text-sm text-gray-500 dark:text-gray-400">
-                Joined in August 2014
+                Posted Date: {dates}
               </div>
             </div>
           </div>
           <div>
             <p className="text-sm text-white ">
               <p className="font-bold">Description:</p>
-              {description}
+              {description.slice(0, 150) + "...more"}
             </p>
           </div>
           <div className="flex bg-secondary p-3 rounded-lg mt-5 justify-between items-center">

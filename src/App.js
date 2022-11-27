@@ -16,6 +16,7 @@ import AdminRoute from "./route/AdminRoute/AdminRoute";
 import SellerRoute from "./Page/Headers/Dashboard/AllBuyer/SellerRoute/SellerRoute";
 import BuyerRoute from "./Page/Headers/Dashboard/AllBuyer/BuyerRoute/BuyerRoute";
 import PrivetRoute from "./route/PrivetRoute/PrivetRoute";
+import Page from "./Page/Page/Page";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,8 +36,7 @@ function App() {
             ),
           element: (
             <PrivetRoute>
-              {" "}
-              <CategoryAllProduct></CategoryAllProduct>{" "}
+              <CategoryAllProduct></CategoryAllProduct>
             </PrivetRoute>
           ),
         },
@@ -60,9 +60,7 @@ function App() {
       children: [
         {
           path: "/dashboard",
-          element: (
-            <h1 className="text-accent text-2xl"> Welcome To DashBoard </h1>
-          ),
+          element: <Page></Page>,
         },
         {
           path: "/dashboard/addProduct",

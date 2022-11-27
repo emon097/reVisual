@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 
@@ -140,7 +140,11 @@ const BookingModal = ({ modalAllProduct }) => {
                     alt=""
                   />
                   <div class="font-medium dark:text-white">
-                    <div> Seller Name: {sellerName}</div>
+                    <div className="flex items-center">
+                      {" "}
+                      Seller Name: {sellerName}{" "}
+                      <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>{" "}
+                    </div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">
                       Seller Phone No: {phoneNo}
                     </div>

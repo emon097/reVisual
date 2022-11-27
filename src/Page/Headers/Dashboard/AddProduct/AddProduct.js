@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -17,11 +19,22 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, []);
+  const { data: allSeller = [], refetch } = useQuery({
+    queryKey: ["Seller"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/users?role=Seller");
+      const data = await res.json();
+      console.log(data);
+      return data;
+    },
+  });
+
   const { user } = useContext(AuthContext);
   const handleProduct = (data) => {
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
+    const dates = format(new Date(), "yyyy-MM-dd");
     const url = `https://api.imgbb.com/1/upload?key=a9092fb79f783fc4527950882d60d253`;
     fetch(url, {
       method: "POST",
@@ -46,6 +59,7 @@ const AddProduct = () => {
           sellerName: user?.displayName,
           email: user?.email,
           sellerAvatar: user?.photoURL,
+          dates,
         };
         console.log(allUser);
         fetch("http://localhost:5000/allProduct", {
