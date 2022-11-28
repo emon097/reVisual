@@ -24,7 +24,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
     quantity,
     _id,
   } = allProduct;
-  const [bookingBtn, setBookingBtn] = useState();
+
   const { user } = useContext(AuthContext);
 
   const { data: allSeller = [], refetch } = useQuery({

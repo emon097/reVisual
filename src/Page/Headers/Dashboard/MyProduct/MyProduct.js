@@ -10,7 +10,7 @@ const MyProduct = () => {
     queryKey: ["Seller"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/allMyProduct?email=${user?.email}`
+        `http://localhost:5000/allMyProduct?sellerEmail=${user?.email}`
       );
       const data = await res.json();
       console.log(data);

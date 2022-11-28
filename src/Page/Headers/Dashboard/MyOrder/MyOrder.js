@@ -13,9 +13,9 @@ const MyOrder = () => {
       });
   }, [user?.email]);
   return (
-    <div className="w-full md:mx-28 lg:mx-28">
+    <div className="mx-28">
       <h1 className="text-3xl bg-primary my-10 p-4 w-60 rounded-lg font-semibold text-white">
-        My Order
+        My Product
       </h1>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
@@ -30,17 +30,27 @@ const MyOrder = () => {
             </tr>
           </thead>
           <tbody>
-            {myOrder.map((myOrders, i) => (
+            {myOrder.map((myProducts) => (
               <tr>
-                <th>{i + 1}</th>
-                <th> {myOrders.productName}</th>
-                <th>{myOrders.condition}</th>
-                <th>{myOrders.phoneNo}</th>
-                <th>${myOrders.sellingPrice}</th>
-                <th> Location: {myOrders?.handleuserInfo?.Userlocation}</th>
+                <th></th>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="w-12 h-12">
+                        <img src={myProducts.image} alt="Avatar" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{myProducts.productName}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{myProducts.condition}</td>
+                <td>{myProducts.phoneNo}</td>
+                <th>${myProducts.sellingPrice}</th>
                 <th>
-                  <button className="btn btn-error btn-sm text-white">
-                    Delete
+                  <button className="btn text-white btn-success btn-xs">
+                    Pay Now
                   </button>
                 </th>
               </tr>

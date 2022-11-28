@@ -26,22 +26,21 @@ const Advertisement = () => {
                 {/* body */}
 
                 <div className="card w-96 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-xl p-4">
-                  <figure>
-                    <img src={advertised.image} alt="Shoes" />
-                  </figure>
-                  <div className="card-body">
-                    <div className=" bg-primary text-3xl p-7 rounded-lg font-bold">
-                      New Discount Offer 40% OFF Servicing Product
+                  <div className="flex">
+                    <div className="my-auto">
+                      <img
+                        className="w-48"
+                        src={advertised.image}
+                        alt="Shoes"
+                      />
                     </div>
-                    <p className="text-xl">{advertised.productName}</p>
-                    <div className="card-actions justify-end">
-                      <div className="badge badge-outline">Apple</div>
-                      <div className="badge badge-outline">DELL</div>
-                      <div className="badge badge-outline">Lenovo</div>
-                      <div className="badge badge-outline">HP</div>
-                    </div>
-                    <div className="flex my-5 justify-center">
-                      <button className="btn text-white btn-error w-32 ">
+
+                    <div>
+                      <p className="text-xl font-bold">
+                        40% OFF Discount Offer Runing{" "}
+                      </p>
+                      <p>{advertised.productName}</p>
+                      <button className="btn btn-sm text-white btn-error w-32 mt-2">
                         Buy Now
                       </button>
                     </div>
@@ -54,7 +53,7 @@ const Advertisement = () => {
 
                 <button
                   onClick={() => setDismiss(true, advertised)}
-                  className="btn mb-80 btn-circle bg-primary"
+                  className="btn btn-circle bg-primary"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

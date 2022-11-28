@@ -28,7 +28,7 @@ const BookingModal = ({ modalAllProduct }) => {
     sellingPrice,
     quantity,
   } = modalAllProduct;
-  const [handleuserInfo, sethandleuserInfo] = useState([]);
+  const [handleUserInfo, sethandleUserInfo] = useState({});
   const handleaddModal = (userInfo) => {
     const Userphone = userInfo.phone;
     const Userlocation = userInfo.location;
@@ -36,11 +36,11 @@ const BookingModal = ({ modalAllProduct }) => {
       Userphone,
       Userlocation,
     };
-    sethandleuserInfo(userBasicInfo);
+    sethandleUserInfo(userBasicInfo);
   };
   const handleBookingModal = (modalBookingData) => {
     console.log(modalBookingData);
-    modalBookingData.handleuserInfo = handleuserInfo;
+    modalBookingData.handleUserInfo = handleUserInfo;
     modalBookingData.email = user?.email;
     delete modalBookingData._id;
     fetch("http://localhost:5000/myOrder", {
@@ -165,9 +165,7 @@ const BookingModal = ({ modalAllProduct }) => {
             </div>
             <div className="flex justify-center mt-5">
               <button
-                onClick={() =>
-                  handleBookingModal(modalAllProduct, user, handleuserInfo)
-                }
+                onClick={() => handleBookingModal(modalAllProduct, user)}
                 className="btn-primary btn text-white"
               >
                 Book Now

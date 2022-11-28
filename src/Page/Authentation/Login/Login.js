@@ -20,11 +20,12 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const handleLogin = (userLogin) => {
-    loginUser(userLogin.email, userLogin.password).then((res) => {
-      const user = res.user;
-      setLoginJwt(userLogin.email);
+    setLoginJwt(userLogin.email);
+    loginUser(userLogin.email, userLogin.password).then((result) => {
+      const user = result.user;
       console.log(user);
-      navigate(from, { replace: true });
+
+      console.log(user);
     });
     console.log(userLogin);
   };
