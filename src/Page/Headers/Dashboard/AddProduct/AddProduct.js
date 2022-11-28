@@ -61,7 +61,7 @@ const AddProduct = () => {
           sellingPrice: data.sellingPrice,
           image,
           sellerName: user?.displayName,
-          email: user?.email,
+          sellerEmail: user?.email,
           sellerAvatar: user?.photoURL,
           dates,
         };

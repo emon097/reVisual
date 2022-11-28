@@ -37,7 +37,12 @@ const MyProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
+        console.log(data);
+        refetch();
+        if (data.modifiedCount === 0) {
+          toast.error("Advertisement Already Running On Home Page ");
+        }
+        if (data.modifiedCount >= 1) {
           toast.success("Advertisement Running On Home Page");
         }
       });
@@ -59,6 +64,7 @@ const MyProduct = () => {
               <th>Quantity</th>
               <th>Action</th>
               <th>Advertisements</th>
+              <th>Product Status</th>
             </tr>
           </thead>
           <tbody>
@@ -77,9 +83,11 @@ const MyProduct = () => {
                     </div>
                   </div>
                 </td>
-                <td>{myProducts.sellingPrice}</td>
+                <td>${myProducts.sellingPrice}</td>
                 <td>{myProducts.category}</td>
-                <th>{myProducts.quantity}</th>
+                <th>
+                  {myProducts.quantity === "" ? "soldOut" : myProducts.quantity}
+                </th>
                 <th>
                   <button
                     onClick={() => handleDelete(myProducts._id)}
@@ -93,9 +101,12 @@ const MyProduct = () => {
                     onClick={() => handleAdvertaisment(myProducts._id)}
                     className="btn text-white btn-xs btn-primary"
                   >
-                    Advertisement
+                    {myProducts?.advertisement === "advertised"
+                      ? "AdVertisement is Running"
+                      : "Run AdVertisement"}
                   </button>
                 </th>
+                <th>AvailAble</th>
               </tr>
             ))}
           </tbody>

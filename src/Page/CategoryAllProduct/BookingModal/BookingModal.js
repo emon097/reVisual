@@ -24,7 +24,9 @@ const BookingModal = ({ modalAllProduct }) => {
     purchaseYear,
     sellerName,
     sellerAvatar,
+    sellerEmail,
     sellingPrice,
+    quantity,
   } = modalAllProduct;
   const [handleuserInfo, sethandleuserInfo] = useState([]);
   const handleaddModal = (userInfo) => {
@@ -37,7 +39,8 @@ const BookingModal = ({ modalAllProduct }) => {
     sethandleuserInfo(userBasicInfo);
   };
   const handleBookingModal = (modalBookingData) => {
-    modalAllProduct.handleuserInfo = handleuserInfo;
+    console.log(modalBookingData);
+    modalBookingData.handleuserInfo = handleuserInfo;
     modalBookingData.email = user?.email;
     delete modalBookingData._id;
     fetch("http://localhost:5000/myOrder", {
@@ -45,10 +48,11 @@ const BookingModal = ({ modalAllProduct }) => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(modalBookingData, handleuserInfo),
+      body: JSON.stringify(modalBookingData),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.acknowledged) {
           toast.success(
             "Product Order Successfully Please Pay Must be Complete"
@@ -108,11 +112,11 @@ const BookingModal = ({ modalAllProduct }) => {
               <div className="flex justify-between">
                 <p>
                   {" "}
-                  <p className="font-bold">Resale Price:</p> {sellingPrice}{" "}
+                  <p className="font-bold">Resale Price:</p> ${sellingPrice}{" "}
                 </p>
                 <p>
                   {" "}
-                  <p className="font-bold">Original Price:</p> {buyingPrice}{" "}
+                  <p className="font-bold">Original Price:</p> ${buyingPrice}{" "}
                 </p>
               </div>
               <div className="flex justify-between">
@@ -124,6 +128,9 @@ const BookingModal = ({ modalAllProduct }) => {
                 <p>
                   {" "}
                   <p className="font-bold">Brand Name:</p> {category}{" "}
+                </p>
+                <p>
+                  <p className="font-bold">AvailableProduct:</p> {quantity}
                 </p>
                 <p>
                   {" "}
@@ -145,6 +152,9 @@ const BookingModal = ({ modalAllProduct }) => {
                       {" "}
                       Seller Name: {sellerName}
                       <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-2"></FaCheckCircle>{" "}
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      Seller Phone No: {phoneNo}
                     </div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">
                       Seller Phone No: {phoneNo}
