@@ -37,6 +37,7 @@ const MyOrder = () => {
                 <th>{myOrders.condition}</th>
                 <th>{myOrders.phoneNo}</th>
                 <th>${myOrders.sellingPrice}</th>
+                <th> Location: {myOrders?.handleuserInfo?.Userlocation}</th>
                 <th>
                   <button className="btn btn-error btn-sm text-white">
                     Delete

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
@@ -26,17 +26,18 @@ const BookingModal = ({ modalAllProduct }) => {
     sellerAvatar,
     sellingPrice,
   } = modalAllProduct;
-
+  const [handleuserInfo, sethandleuserInfo] = useState([]);
   const handleaddModal = (userInfo) => {
-    const phone = userInfo.phone;
-    const location = userInfo.location;
+    const Userphone = userInfo.phone;
+    const Userlocation = userInfo.location;
     const userBasicInfo = {
-      phone,
-      location,
+      Userphone,
+      Userlocation,
     };
-    console.log(userBasicInfo);
+    sethandleuserInfo(userBasicInfo);
   };
   const handleBookingModal = (modalBookingData) => {
+    modalAllProduct.handleuserInfo = handleuserInfo;
     modalBookingData.email = user?.email;
     delete modalBookingData._id;
     fetch("http://localhost:5000/myOrder", {
@@ -44,7 +45,7 @@ const BookingModal = ({ modalAllProduct }) => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(modalBookingData),
+      body: JSON.stringify(modalBookingData, handleuserInfo),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -140,9 +141,10 @@ const BookingModal = ({ modalAllProduct }) => {
                     alt=""
                   />
                   <div class="font-medium dark:text-white">
-                    <div className="flex items-center">
-                      Seller Name: {sellerName}{" "}
-                      <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1"></FaCheckCircle>
+                    <div className="flex text-white">
+                      {" "}
+                      Seller Name: {sellerName}
+                      <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-2"></FaCheckCircle>{" "}
                     </div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">
                       Seller Phone No: {phoneNo}
@@ -153,7 +155,9 @@ const BookingModal = ({ modalAllProduct }) => {
             </div>
             <div className="flex justify-center mt-5">
               <button
-                onClick={() => handleBookingModal(modalAllProduct, user)}
+                onClick={() =>
+                  handleBookingModal(modalAllProduct, user, handleuserInfo)
+                }
                 className="btn-primary btn text-white"
               >
                 Book Now

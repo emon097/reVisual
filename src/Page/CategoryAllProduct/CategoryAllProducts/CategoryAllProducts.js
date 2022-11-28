@@ -21,6 +21,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
     sellerName,
     dates,
     verified,
+    quantity,
     _id,
   } = allProduct;
   const [bookingBtn, setBookingBtn] = useState();
@@ -52,6 +53,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
               Brand Name: {category}
             </p>
           </div>
+          <p className="text-white font-bold">Available Product: {quantity}</p>
           <div className="flex items-center mt-5 justify-between">
             <span className="text-lg font-bold bg-primary p-2 rounded-lg text-gray-900 dark:text-white">
               ReSell Price: ${sellingPrice}
@@ -97,6 +99,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
               </p>
             </div>
           </div>
+
           <div className="flex justify-center mt-5">
             <label
               onClick={() => setModalAllProduct(allProduct)}

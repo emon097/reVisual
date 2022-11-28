@@ -9,7 +9,7 @@ const AllSeller = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/users?role=Seller");
       const data = await res.json();
-      console.log(data);
+
       return data;
     },
   });
@@ -20,7 +20,9 @@ const AllSeller = () => {
       .then((res) => res.json())
       .then((data) => {
         refetch();
-        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Seller Deleted SuccessFully");
+        }
       });
   };
 

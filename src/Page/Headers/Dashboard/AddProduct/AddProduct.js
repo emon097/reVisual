@@ -49,6 +49,7 @@ const AddProduct = () => {
         const image = imgData.data.display_url;
         const allUser = {
           buyingPrice: data.buyingPrice,
+          quantity: data.quantity,
           category: data.category,
           condition: data.condition,
           description: data.description,
@@ -99,6 +100,22 @@ const AddProduct = () => {
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-primary duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary  peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Product Name
+            </label>
+          </div>
+          <div class="relative z-0 mb-6 w-full group">
+            <input
+              {...register("quantity")}
+              type="text"
+              id="quantity"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black  dark:border-gray-600 dark:focus:border-primary focus:outline-none focus:ring-0 focus:border-primary peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="quantity"
+              class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-primary duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary  peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Quantity
             </label>
           </div>
         </div>

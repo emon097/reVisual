@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider";
 import useToken from "../../../Hooks/useToken";
@@ -67,7 +68,7 @@ const SignUp = () => {
   };
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div className="card mt-5 mb-5 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="card-body">
             <div className="form-control">
@@ -136,7 +137,10 @@ const SignUp = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn text-white btn-primary">SignUp</button>
-              <Loading></Loading>
+              <div className="flex text-white mt-5 btn btn-secondary justify-center items-center">
+                <FaGoogle></FaGoogle>{" "}
+                <button className="mx-2">Continue With Google</button>
+              </div>
             </div>
           </div>
         </form>

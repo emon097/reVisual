@@ -1,15 +1,48 @@
-import React, { useContext, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../../Context/AuthProvider";
 
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
-  const [myProduct, setMyProduct] = useState([]);
-  fetch(`http://localhost:5000/allMyProduct?email=${user?.email}`)
-    .then((res) => res.json())
-    .then((data) => {
-      setMyProduct(data);
+
+  const { data: myProduct = [], refetch } = useQuery({
+    queryKey: ["Seller"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/allMyProduct?email=${user?.email}`
+      );
+      const data = await res.json();
       console.log(data);
-    });
+      return data;
+    },
+  });
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/allMyProduct/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+        if (data.deletedCount >= 1) {
+          toast.success("Product SuccessFully Deleted");
+        }
+      });
+  };
+
+  const handleAdvertaisment = (id) => {
+    fetch(`http://localhost:5000/advertisement/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Advertisement Running On Home Page");
+        }
+      });
+  };
+
   return (
     <div className="mx-28">
       <h1 className="text-3xl bg-primary my-10 p-4 w-60 rounded-lg font-semibold text-white">
@@ -35,8 +68,8 @@ const MyProduct = () => {
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img src="photo" alt="Avatar" />
+                      <div className="w-12 h-12">
+                        <img src={myProducts.image} alt="Avatar" />
                       </div>
                     </div>
                     <div>
@@ -46,10 +79,20 @@ const MyProduct = () => {
                 </td>
                 <td>{myProducts.sellingPrice}</td>
                 <td>{myProducts.category}</td>
-                <th>Quantity</th>
-                <th>delete</th>
+                <th>{myProducts.quantity}</th>
                 <th>
-                  <button className="btn text-white btn-xs btn-primary">
+                  <button
+                    onClick={() => handleDelete(myProducts._id)}
+                    className="btn btn-error text-white btn-xs"
+                  >
+                    Delete
+                  </button>
+                </th>
+                <th>
+                  <button
+                    onClick={() => handleAdvertaisment(myProducts._id)}
+                    className="btn text-white btn-xs btn-primary"
+                  >
                     Advertisement
                   </button>
                 </th>
