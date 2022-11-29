@@ -8,10 +8,9 @@ const CheckOut = ({ payment }) => {
   const elements = useElements();
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
-
   const [success, setSuccess] = useState("");
-
-  const { userInfo, userName, email, _id } = payment;
+  const { userInfo, userName, email, productId, _id } = payment;
+  console.log(payment);
   const { sellingPrice, productName } = userInfo;
 
   useEffect(() => {
@@ -68,7 +67,8 @@ const CheckOut = ({ payment }) => {
         productName,
         sellingPrice,
         email,
-        BookingId: _id,
+        bookingId: _id,
+        productId: productId,
         treansectionId: paymentIntent?.id,
       };
       fetch("http://localhost:5000/payment", {

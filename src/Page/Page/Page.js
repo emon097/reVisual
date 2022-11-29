@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Page = () => {
@@ -35,13 +36,23 @@ const Page = () => {
             </p>
             {profile.map((role) => (
               <>
+                <p className="text-gray-400 mt-2 items-center flex dark:text-gray-400">
+                  {role?.Verification === "verified" ? (
+                    <p className="btn text-white btn-xs btn-success">
+                      Verified{" "}
+                      <FaCheckCircle className="text-blue-700 rounded-xl bg-white mx-1 "></FaCheckCircle>
+                    </p>
+                  ) : (
+                    <p></p>
+                  )}
+                </p>
                 <p class="text-gray-400 mt-2 flex dark:text-gray-400">
-                  <p className="font-bold mx-1">Role:</p>{" "}
+                  <p className="font-bold mx-1">Role:</p>
                   <p>
                     {role.role}{" "}
                     <p class="text-gray-400  flex dark:text-gray-400">
                       <p className=" mx-1">{role?.status}</p>
-                    </p>{" "}
+                    </p>
                   </p>
                 </p>
               </>

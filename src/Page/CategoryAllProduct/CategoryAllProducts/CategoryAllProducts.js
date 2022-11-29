@@ -25,7 +25,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
     _id,
   } = allProduct;
 
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
 
   // const { data: allSeller = [], refetch } = useQuery({
   //   queryKey: ["verification"],
@@ -68,7 +68,6 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
           </div>
           <div class="flex mt-5 items-center space-x-4">
             <img class="w-10 h-10 rounded-full" src={sellerAvatar} alt="" />
-
             <div class="font-medium dark:text-white">
               <div className="flex items-center">
                 {sellerName}
@@ -87,9 +86,8 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
           </div>
           <div className="flex bg-secondary p-3 rounded-lg mt-5 justify-between items-center">
             <div className="flex text-white item-center justify-center">
-              {verified !== "verified" && (
-                <FaLocationArrow className="mt-1 mx-1"></FaLocationArrow>
-              )}
+              <FaLocationArrow className="mt-1 mx-1"></FaLocationArrow>
+
               <p className="text-sm ">Location: {location}</p>
             </div>
             <div className="text-sm flex text-white">

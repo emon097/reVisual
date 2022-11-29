@@ -17,6 +17,7 @@ const BookingModal = ({ modalAllProduct }) => {
     category,
     condition,
     description,
+    _id,
     image,
     location,
     phoneNo,
@@ -31,6 +32,7 @@ const BookingModal = ({ modalAllProduct }) => {
   const onSubmit = (userInfo) => {
     const Userphone = userInfo.phone;
     const selleremail = sellerEmail;
+    const productId = _id;
     const Userlocation = userInfo.location;
     const email = (userInfo.email = user?.email);
     const userName = (userInfo.displayName = user?.displayName);
@@ -49,6 +51,7 @@ const BookingModal = ({ modalAllProduct }) => {
     userInfo.location = location;
     const allinfos = {
       email,
+      productId,
       userimage,
       selleremail,
       Userlocation,

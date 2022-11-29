@@ -15,6 +15,7 @@ const CategoryAllProduct = () => {
       .then((data) => data.json())
       .then((data) => setAllProduct(data));
   }, []);
+
   return (
     <div>
       <div>

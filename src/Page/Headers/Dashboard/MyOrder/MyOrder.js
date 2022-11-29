@@ -16,7 +16,7 @@ const MyOrder = () => {
   return (
     <div className="mx-28">
       <h1 className="text-3xl bg-primary my-10 p-4 w-60 rounded-lg font-semibold text-white">
-        My Product
+        My Order
       </h1>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
@@ -42,7 +42,9 @@ const MyOrder = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{myProducts?.productName}</div>
+                      <div className="font-bold">
+                        {myProducts?.userInfo.productName}
+                      </div>
                     </div>
                   </div>
                 </td>

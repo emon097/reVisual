@@ -21,18 +21,6 @@ const AddProduct = () => {
       .then((data) => setCategory(data));
   }, []);
 
-  // const { data: allSeller = [], refetch } = useQuery({
-  //   queryKey: ["verification"],
-  //   queryFn: async () => {
-  //     const res = await fetch(
-  //       `http://localhost:5000/verification?email=${user?.email}`
-  //     );
-  //     const data = await res.json();
-  //     console.log(data);
-  //     return data;
-  //   },
-  // });
-
   const handleProduct = (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -57,7 +45,7 @@ const AddProduct = () => {
           price: data.price,
           productName: data.productName,
           purchaseYear: data.purchaseYear,
-          sellingPrice: parseInt(data.sellingPrice),
+          sellingPrice: data.sellingPrice,
           image,
           sellerName: user?.displayName,
           sellerEmail: user?.email,
