@@ -11,11 +11,12 @@ const CategoryAllProduct = () => {
   const [allProducts, setAllProduct] = useState([]);
   const [modalAllProduct, setModalAllProduct] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/allProduct?category=${category.category}`)
+    fetch(
+      `https://revisual-server.vercel.app/allProduct?category=${category.category}`
+    )
       .then((data) => data.json())
       .then((data) => setAllProduct(data));
   }, []);
-
   return (
     <div>
       <div>

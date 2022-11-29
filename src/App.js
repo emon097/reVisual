@@ -20,22 +20,29 @@ import Page from "./Page/Page/Page";
 import MyProduct from "./Page/Headers/Dashboard/MyProduct/MyProduct";
 import Payment from "./Payment/Payment";
 import MyBuyer from "./MyBuyer/MyBuyer";
+import Blog from "./Blog/Blog";
+import Error from "./Page/Error/Error";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <Error></Error>,
       children: [
         {
           path: "/",
           element: <Headers></Headers>,
         },
         {
+          path: "/blogs",
+          element: <Blog></Blog>,
+        },
+        {
           path: "/allProduct/:category",
           loader: (params) =>
             fetch(
-              `http://localhost:5000/allProduct?category=${params.category}`
+              `https://revisual-server.vercel.app/allProduct?category=${params.category}`
             ),
           element: (
             <PrivetRoute>
@@ -101,7 +108,9 @@ function App() {
         {
           path: "/dashboard/payment/:id",
           loader: ({ params }) =>
-            fetch(`http://localhost:5000/paymentRoute/${params.id}`),
+            fetch(
+              `https://revisual-server.vercel.app/paymentRoute/${params.id}`
+            ),
           element: <Payment></Payment>,
         },
         {

@@ -10,7 +10,12 @@ const MyProduct = () => {
     queryKey: ["Seller"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/allMyProduct?sellerEmail=${user?.email}`
+        `https://revisual-server.vercel.app/allMyProduct?sellerEmail=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer  ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       const data = await res.json();
       console.log(data);
@@ -19,7 +24,7 @@ const MyProduct = () => {
   });
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/allMyProduct/${id}`, {
+    fetch(`https://revisual-server.vercel.app/allMyProduct/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -32,7 +37,7 @@ const MyProduct = () => {
   };
 
   const handleAdvertaisment = (id) => {
-    fetch(`http://localhost:5000/advertisement/${id}`, {
+    fetch(`https://revisual-server.vercel.app/advertisement/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())

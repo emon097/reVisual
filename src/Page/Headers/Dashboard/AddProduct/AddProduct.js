@@ -16,10 +16,22 @@ const AddProduct = () => {
   const [category, setCategory] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/category")
+    fetch("https://revisual-server.vercel.app/category")
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, []);
+
+  // const { data: allSeller = [], refetch } = useQuery({
+  //   queryKey: ["verification"],
+  //   queryFn: async () => {
+  //     const res = await fetch(
+  //       `http://localhost:5000/verification?email=${user?.email}`
+  //     );
+  //     const data = await res.json();
+  //     console.log(data);
+  //     return data;
+  //   },
+  // });
 
   const handleProduct = (data) => {
     const image = data.image[0];
@@ -35,6 +47,7 @@ const AddProduct = () => {
       .then((imgData) => {
         console.log(imgData);
         const image = imgData.data.display_url;
+        const paid = false;
         const allUser = {
           buyingPrice: data.buyingPrice,
           category: data.category,
@@ -51,9 +64,10 @@ const AddProduct = () => {
           sellerEmail: user?.email,
           sellerAvatar: user?.photoURL,
           dates,
+          paid,
         };
         console.log(allUser);
-        fetch("http://localhost:5000/allProduct", {
+        fetch("https://revisual-server.vercel.app/allProduct", {
           method: "POST",
           headers: {
             "content-type": "application/json",

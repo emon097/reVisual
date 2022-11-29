@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { FaCheckCircle, FaLocationArrow } from "react-icons/fa";
-import { AuthContext } from "../../../Context/AuthProvider";
-import BookingModal from "../BookingModal/BookingModal";
 
 const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
   console.log(allProduct);
@@ -24,20 +22,6 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
     quantity,
     _id,
   } = allProduct;
-
-  // const { user } = useContext(AuthContext);
-
-  // const { data: allSeller = [], refetch } = useQuery({
-  //   queryKey: ["verification"],
-  //   queryFn: async () => {
-  //     const res = await fetch(
-  //       `http://localhost:5000/verification?email=${user?.email}`
-  //     );
-  //     const data = await res.json();
-  //     console.log(data);
-  //     return data;
-  //   },
-  // });
 
   return (
     <div>
@@ -68,6 +52,7 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
           </div>
           <div class="flex mt-5 items-center space-x-4">
             <img class="w-10 h-10 rounded-full" src={sellerAvatar} alt="" />
+
             <div class="font-medium dark:text-white">
               <div className="flex items-center">
                 {sellerName}
@@ -86,8 +71,9 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
           </div>
           <div className="flex bg-secondary p-3 rounded-lg mt-5 justify-between items-center">
             <div className="flex text-white item-center justify-center">
-              <FaLocationArrow className="mt-1 mx-1"></FaLocationArrow>
-
+              {verified !== "verified" && (
+                <FaLocationArrow className="mt-1 mx-1"></FaLocationArrow>
+              )}
               <p className="text-sm ">Location: {location}</p>
             </div>
             <div className="text-sm flex text-white">

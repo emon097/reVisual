@@ -6,7 +6,11 @@ const Page = () => {
   const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/profile?email=${user?.email}`)
+    fetch(`https://revisual-server.vercel.app/profile?email=${user?.email}`, {
+      headers: {
+        authorization: `bearer  ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setProfile(data);

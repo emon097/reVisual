@@ -37,13 +37,11 @@ const Headers = () => {
                   height="24"
                 />
               </svg>
-              <span className="relative">The</span>
             </span>{" "}
-            quick, brown fox jumps over a lazy dog
+            We Are Product Buy Sell Company
           </h2>
           <p className="text-base text-gray-700 md:text-lg">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque rem aperiam, eaque ipsa quae.
+            You Can Buy And Sell Your Old Laptop
           </p>
         </div>
         <form className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
