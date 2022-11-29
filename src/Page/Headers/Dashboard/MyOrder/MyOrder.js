@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../Context/AuthProvider";
 
 const MyOrder = () => {
@@ -26,7 +27,7 @@ const MyOrder = () => {
               <th>Product Condition</th>
               <th>Seller Phone No</th>
               <th>Price</th>
-              <th>Action</th>
+              <th>location</th>
             </tr>
           </thead>
           <tbody>
@@ -37,21 +38,30 @@ const MyOrder = () => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="w-12 h-12">
-                        <img src={myProducts.image} alt="Avatar" />
+                        <img src={myProducts?.userInfo?.image} alt="Avatar" />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{myProducts.productName}</div>
+                      <div className="font-bold">{myProducts?.productName}</div>
                     </div>
                   </div>
                 </td>
-                <td>{myProducts.condition}</td>
-                <td>{myProducts.phoneNo}</td>
-                <th>${myProducts.sellingPrice}</th>
+                <td>{myProducts?.userInfo?.condition}</td>
+                <td>{myProducts?.userInfo?.phoneNo}</td>
+                <th>${myProducts?.userInfo?.sellingPrice}</th>
                 <th>
-                  <button className="btn text-white btn-success btn-xs">
-                    Pay Now
-                  </button>
+                  {myProducts.userInfo.sellingPrice && !myProducts.paid && (
+                    <Link to={`/dashboard/payment/${myProducts._id}`}>
+                      <button className="btn text-white btn-success btn-xs">
+                        Pay Now
+                      </button>
+                    </Link>
+                  )}
+                  {myProducts?.userInfo?.sellingPrice && myProducts.paid && (
+                    <button className="btn text-white btn-success btn-xs">
+                      Paid
+                    </button>
+                  )}
                 </th>
               </tr>
             ))}

@@ -57,7 +57,7 @@ const AddProduct = () => {
           price: data.price,
           productName: data.productName,
           purchaseYear: data.purchaseYear,
-          sellingPrice: data.sellingPrice,
+          sellingPrice: parseInt(data.sellingPrice),
           image,
           sellerName: user?.displayName,
           sellerEmail: user?.email,

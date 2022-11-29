@@ -27,17 +27,17 @@ const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
 
   const { user } = useContext(AuthContext);
 
-  const { data: allSeller = [], refetch } = useQuery({
-    queryKey: ["verification"],
-    queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/verification?email=${user?.email}`
-      );
-      const data = await res.json();
-      console.log(data);
-      return data;
-    },
-  });
+  // const { data: allSeller = [], refetch } = useQuery({
+  //   queryKey: ["verification"],
+  //   queryFn: async () => {
+  //     const res = await fetch(
+  //       `http://localhost:5000/verification?email=${user?.email}`
+  //     );
+  //     const data = await res.json();
+  //     console.log(data);
+  //     return data;
+  //   },
+  // });
 
   return (
     <div>

@@ -18,6 +18,8 @@ import BuyerRoute from "./Page/Headers/Dashboard/AllBuyer/BuyerRoute/BuyerRoute"
 import PrivetRoute from "./route/PrivetRoute/PrivetRoute";
 import Page from "./Page/Page/Page";
 import MyProduct from "./Page/Headers/Dashboard/MyProduct/MyProduct";
+import Payment from "./Payment/Payment";
+import MyBuyer from "./MyBuyer/MyBuyer";
 
 function App() {
   const router = createBrowserRouter([
@@ -97,12 +99,22 @@ function App() {
           ),
         },
         {
+          path: "/dashboard/payment/:id",
+          loader: ({ params }) =>
+            fetch(`http://localhost:5000/paymentRoute/${params.id}`),
+          element: <Payment></Payment>,
+        },
+        {
           path: "/dashboard/allSeller",
           element: (
             <AdminRoute>
               <AllSeller></AllSeller>
             </AdminRoute>
           ),
+        },
+        {
+          path: "/dashboard/myBuyer",
+          element: <MyBuyer></MyBuyer>,
         },
       ],
     },

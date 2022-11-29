@@ -28,27 +28,42 @@ const BookingModal = ({ modalAllProduct }) => {
     sellingPrice,
     quantity,
   } = modalAllProduct;
-  const [handleUserInfo, sethandleUserInfo] = useState({});
-  const handleaddModal = (userInfo) => {
+  const onSubmit = (userInfo) => {
     const Userphone = userInfo.phone;
+    const selleremail = sellerEmail;
     const Userlocation = userInfo.location;
-    const userBasicInfo = {
-      Userphone,
+    const email = (userInfo.email = user?.email);
+    const userName = (userInfo.displayName = user?.displayName);
+    const userimage = (userInfo.photoURL = user?.photoURL);
+    userInfo.quantity = quantity;
+    userInfo.buyingPrice = buyingPrice;
+    userInfo.category = category;
+    userInfo.condition = condition;
+    userInfo.description = description;
+    userInfo.image = image;
+    userInfo.phoneNo = phoneNo;
+    userInfo.productName = productName;
+    userInfo.purchaseYear = purchaseYear;
+    userInfo.sellerName = sellerName;
+    userInfo.sellingPrice = parseInt(sellingPrice);
+    userInfo.location = location;
+    const allinfos = {
+      email,
+      userimage,
+      selleremail,
       Userlocation,
+      userName,
+      Userphone,
+      userInfo,
     };
-    sethandleUserInfo(userBasicInfo);
-  };
-  const handleBookingModal = (modalBookingData) => {
-    console.log(modalBookingData);
-    modalBookingData.handleUserInfo = handleUserInfo;
-    modalBookingData.email = user?.email;
-    delete modalBookingData._id;
+    console.log(allinfos);
+
     fetch("http://localhost:5000/myOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(modalBookingData),
+      body: JSON.stringify(allinfos),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -60,9 +75,13 @@ const BookingModal = ({ modalAllProduct }) => {
         }
       });
   };
+  // const handleBookingModal = (modalBookingData) => {
+  //   console.log(modalBookingData);
+  //   delete modalBookingData._id;
+  // };
   return (
     <div>
-      <form onSubmit={handleSubmit(handleaddModal)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input type="checkbox" id="BookingModal" className="modal-toggle" />
         <div className="modal">
           <div className="modal-box relative">
@@ -165,7 +184,7 @@ const BookingModal = ({ modalAllProduct }) => {
             </div>
             <div className="flex justify-center mt-5">
               <button
-                onClick={() => handleBookingModal(modalAllProduct, user)}
+                // onClick={() => handleBookingModal(modalAllProduct, user)}
                 className="btn-primary btn text-white"
               >
                 Book Now
