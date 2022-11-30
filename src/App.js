@@ -42,7 +42,7 @@ function App() {
           path: "/allProduct/:category",
           loader: (params) =>
             fetch(
-              `https://revisual-server.vercel.app/allProduct?category=${params.category}`
+              `http://localhost:5000/allProduct?category=${params.category}`
             ),
           element: (
             <PrivetRoute>
@@ -70,7 +70,11 @@ function App() {
       children: [
         {
           path: "/dashboard",
-          element: <Page></Page>,
+          element: (
+            <PrivetRoute>
+              <Page></Page>
+            </PrivetRoute>
+          ),
         },
         {
           path: "/dashboard/addProduct",
@@ -84,8 +88,7 @@ function App() {
           path: "/dashboard/myOrder",
           element: (
             <BuyerRoute>
-              {" "}
-              <MyOrder></MyOrder>{" "}
+              <MyOrder></MyOrder>
             </BuyerRoute>
           ),
         },
@@ -108,10 +111,16 @@ function App() {
         {
           path: "/dashboard/payment/:id",
           loader: ({ params }) =>
-            fetch(
-              `https://revisual-server.vercel.app/paymentRoute/${params.id}`
-            ),
-          element: <Payment></Payment>,
+            fetch(`http://localhost:5000/paymentRoute/${params.id}`, {
+              headers: {
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }),
+          element: (
+            <PrivetRoute>
+              <Payment></Payment>
+            </PrivetRoute>
+          ),
         },
         {
           path: "/dashboard/allSeller",
@@ -123,7 +132,11 @@ function App() {
         },
         {
           path: "/dashboard/myBuyer",
-          element: <MyBuyer></MyBuyer>,
+          element: (
+            <SellerRoute>
+              <MyBuyer></MyBuyer>
+            </SellerRoute>
+          ),
         },
       ],
     },

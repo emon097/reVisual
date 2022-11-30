@@ -5,15 +5,17 @@ const AllBuyer = () => {
   const { data: allBuyer = [], refetch } = useQuery({
     queryKey: ["Seller"],
     queryFn: async () => {
-      const res = await fetch(
-        "https://revisual-server.vercel.app/users?role=Buyer"
-      );
+      const res = await fetch("http://localhost:5000/users?role=Buyer", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
   });
   const handleBuyersDelete = (id) => {
-    fetch(`https://revisual-server.vercel.app/users/${id}`, {
+    fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

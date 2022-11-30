@@ -23,11 +23,7 @@ const Login = () => {
     setLoginJwt(userLogin.email);
     loginUser(userLogin.email, userLogin.password).then((result) => {
       const user = result.user;
-      console.log(user);
-
-      console.log(user);
     });
-    console.log(userLogin);
   };
   return (
     <div>

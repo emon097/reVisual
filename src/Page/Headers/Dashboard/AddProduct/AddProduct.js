@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../../Context/AuthProvider";
-// import { useQuery } from "@tanstack/react-query";
 
 const AddProduct = () => {
   const {
@@ -16,22 +15,10 @@ const AddProduct = () => {
   const [category, setCategory] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("https://revisual-server.vercel.app/category")
+    fetch("http://localhost:5000/category")
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, []);
-
-  // const { data: allSeller = [], refetch } = useQuery({
-  //   queryKey: ["verification"],
-  //   queryFn: async () => {
-  //     const res = await fetch(
-  //       `http://localhost:5000/verification?email=${user?.email}`
-  //     );
-  //     const data = await res.json();
-  //     console.log(data);
-  //     return data;
-  //   },
-  // });
 
   const handleProduct = (data) => {
     const image = data.image[0];
@@ -67,7 +54,7 @@ const AddProduct = () => {
           paid,
         };
         console.log(allUser);
-        fetch("https://revisual-server.vercel.app/allProduct", {
+        fetch("http://localhost:5000/allProduct", {
           method: "POST",
           headers: {
             "content-type": "application/json",

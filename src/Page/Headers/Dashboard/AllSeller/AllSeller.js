@@ -7,16 +7,18 @@ const AllSeller = () => {
   const { data: allSeller = [], refetch } = useQuery({
     queryKey: ["Seller"],
     queryFn: async () => {
-      const res = await fetch(
-        "https://revisual-server.vercel.app/users?role=Seller"
-      );
+      const res = await fetch("http://localhost:5000/users?role=Seller", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = await res.json();
 
       return data;
     },
   });
   const handleSellersDelete = (id) => {
-    fetch(`https://revisual-server.vercel.app/users/${id}`, {
+    fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -29,7 +31,7 @@ const AllSeller = () => {
   };
 
   const userVerified = (id) => {
-    fetch(`https://revisual-server.vercel.app/users/${id}`, {
+    fetch(`http://localhost:5000/users/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())

@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
@@ -8,18 +9,49 @@ import useToken from "../../../Hooks/useToken";
 import Loading from "../../../Loading/Loading";
 
 const SignUp = () => {
-  const { createUsersEmail, updateUser } = useContext(AuthContext);
+  const { createUsersEmail, updateUser, googleRegister } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const [createdUserJwt, setCreatedUserJwt] = useState("");
   const [token] = useToken(createdUserJwt);
   if (token) {
     navigate("/");
   }
+
+  const handleGoogleSignUp = () => {
+    googleRegister(provider).then((res) => {
+      const user = res.user;
+      setCreatedUserJwt(user?.email);
+      const displayName = user?.displayName;
+      const photoURL = user?.photoURL;
+      const email = user?.email;
+      const role = "Buyer";
+      const GoogleUserInfo = {
+        displayName,
+        photoURL,
+        email,
+        role,
+      };
+      console.log(GoogleUserInfo);
+      fetch("http://localhost:5000/googleSignUp", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(GoogleUserInfo),
+      }).then((data) => {
+        navigate("/");
+        console.log(data);
+      });
+    });
+  };
+
   const handleSignUp = (signUp) => {
     createUsersEmail(signUp.email, signUp.password).then((res) => {
       const user = res.user;
@@ -47,7 +79,7 @@ const SignUp = () => {
               email: signUp.email,
               role: signUp.role,
             };
-            fetch("https://revisual-server.vercel.app/users", {
+            fetch("http://localhost:5000/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
@@ -139,7 +171,9 @@ const SignUp = () => {
               <button className="btn text-white btn-primary">SignUp</button>
               <div className="flex text-white mt-5 btn btn-secondary justify-center items-center">
                 <FaGoogle></FaGoogle>{" "}
-                <button className="mx-2">Continue With Google</button>
+                <button onClick={handleGoogleSignUp} className="mx-2">
+                  Continue With Google
+                </button>
               </div>
             </div>
           </div>

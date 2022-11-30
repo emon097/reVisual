@@ -5,14 +5,11 @@ const MyBuyer = () => {
   const { user } = useContext(AuthContext);
   const [myBuyer, setMyBuyer] = useState([]);
   useEffect(() => {
-    fetch(
-      `https://revisual-server.vercel.app/myBuyer?selleremail=${user?.email}`,
-      {
-        headers: {
-          authorization: `bearer  ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    fetch(`http://localhost:5000/myBuyer?selleremail=${user?.email}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setMyBuyer(data);
@@ -34,7 +31,6 @@ const MyBuyer = () => {
               <th>Buyer Phone Number</th>
               <th>Product Buy</th>
               <th>Buyer Address</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -61,11 +57,6 @@ const MyBuyer = () => {
                   <td>{myBuyers.Userphone}</td>
                   <td>{myBuyers?.userInfo?.productName}</td>
                   <th>{myBuyers.Userlocation}</th>
-                  <th>
-                    <button className="btn btn-error btn-xs text-white">
-                      Delete
-                    </button>
-                  </th>
                 </tr>
               </>
             ))}

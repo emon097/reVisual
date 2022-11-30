@@ -6,9 +6,9 @@ const MyOrder = () => {
   const { user } = useContext(AuthContext);
   const [myOrder, setMyOrder] = useState([]);
   useEffect(() => {
-    fetch(`https://revisual-server.vercel.app/myOrder?email=${user?.email}`, {
+    fetch(`http://localhost:5000/myOrder?email=${user?.email}`, {
       headers: {
-        authorization: `bearer  ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())

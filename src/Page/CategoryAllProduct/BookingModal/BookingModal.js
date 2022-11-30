@@ -61,7 +61,7 @@ const BookingModal = ({ modalAllProduct }) => {
     };
     console.log(allinfos);
 
-    fetch("https://revisual-server.vercel.app/myOrder", {
+    fetch("http://localhost:5000/myOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -75,13 +75,12 @@ const BookingModal = ({ modalAllProduct }) => {
           toast.success(
             "Product Order Successfully Please Pay Must be Complete"
           );
+        } else {
+          toast.error(data.message);
         }
       });
   };
-  // const handleBookingModal = (modalBookingData) => {
-  //   console.log(modalBookingData);
-  //   delete modalBookingData._id;
-  // };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>

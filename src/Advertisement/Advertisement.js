@@ -4,14 +4,11 @@ const Advertisement = () => {
   const [dismiss, setDismiss] = useState(false);
   const [advertisement, setAdvertisement] = useState([]);
   useEffect(() => {
-    fetch(
-      "https://revisual-server.vercel.app/showAdvertisement?advertisement=advertised",
-      {
-        headers: {
-          authorization: `bearer  ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+    fetch("http://localhost:5000/showAdvertisement?advertisement=advertised", {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
