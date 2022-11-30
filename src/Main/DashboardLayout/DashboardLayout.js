@@ -36,9 +36,6 @@ const DashboardLayout = () => {
                 <li className="hover:text-primary">
                   <Link to="/dashboard/myOrder"> My Order</Link>
                 </li>
-                <li className="hover:text-primary">
-                  <Link> My Whistlist</Link>
-                </li>
               </>
             )}
             {isSeller && (

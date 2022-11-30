@@ -15,9 +15,5 @@ This project will be supported by 2 customer sellers
 - Seller Will See My Product My Buyer And He/She Can Add Product
 - Buyer Order Product Complete Payment And Buyer Will Success Her Payment Product Removed Form All Product Section
 
-\*\*
-
-Admin Email : admin@gmail.com
-Admin Password : 12345678
-
-\*\*
+**Admin Email : admin@gmail.com**
+**Admin Password : 12345678**
