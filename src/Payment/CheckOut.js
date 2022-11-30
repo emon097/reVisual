@@ -10,7 +10,7 @@ const CheckOut = ({ payment }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [success, setSuccess] = useState("");
   const { userInfo, userName, email, productId, _id } = payment;
-  console.log(payment);
+
   const { sellingPrice, productName } = userInfo;
 
   useEffect(() => {
@@ -42,7 +42,6 @@ const CheckOut = ({ payment }) => {
     });
     if (error) {
       setCardError(error.message);
-      console.log(error);
     } else {
       setCardError("");
     }
@@ -91,7 +90,6 @@ const CheckOut = ({ payment }) => {
         });
     }
     setProcessing(false);
-    console.log("payment", paymentIntent);
   };
   return (
     <div className="text-white ">

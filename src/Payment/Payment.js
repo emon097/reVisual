@@ -4,10 +4,10 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import CheckOut from "./CheckOut";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
-console.log(stripePromise);
+
 const Payment = () => {
   const payment = useLoaderData();
-  console.log(payment);
+
   return (
     <div className="bg-primary mt-9 mx-20  p-9 rounded-xl">
       <div className="flex justify-center ">

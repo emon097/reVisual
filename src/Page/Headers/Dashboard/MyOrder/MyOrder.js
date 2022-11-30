@@ -14,7 +14,6 @@ const MyOrder = () => {
       .then((res) => res.json())
       .then((data) => {
         setMyOrder(data);
-        console.log(data);
       });
   }, [user?.email]);
   return (

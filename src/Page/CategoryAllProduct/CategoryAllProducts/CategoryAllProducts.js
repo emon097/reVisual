@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 import { FaCheckCircle, FaLocationArrow } from "react-icons/fa";
 
 const CategoryAllProducts = ({ allProduct, setModalAllProduct }) => {
-  console.log(allProduct);
   const {
     buyingPrice,
     category,

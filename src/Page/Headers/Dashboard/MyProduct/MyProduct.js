@@ -18,7 +18,7 @@ const MyProduct = () => {
         }
       );
       const data = await res.json();
-      console.log(data);
+
       return data;
     },
   });
@@ -42,7 +42,6 @@ const MyProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         refetch();
         if (data.modifiedCount === 0) {
           toast.error("Advertisement Already Running On Home Page ");

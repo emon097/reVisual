@@ -38,7 +38,7 @@ const SignUp = () => {
         email,
         role,
       };
-      console.log(GoogleUserInfo);
+
       fetch("https://revisual-server.vercel.app/googleSignUp", {
         method: "POST",
         headers: {
@@ -47,7 +47,6 @@ const SignUp = () => {
         body: JSON.stringify(GoogleUserInfo),
       }).then((data) => {
         navigate("/");
-        console.log(data);
       });
     });
   };
@@ -55,7 +54,7 @@ const SignUp = () => {
   const handleSignUp = (signUp) => {
     createUsersEmail(signUp.email, signUp.password).then((res) => {
       const user = res.user;
-      console.log(user);
+
       const image = signUp.image[0];
       const formData = new FormData();
       formData.append("image", image);
@@ -66,7 +65,6 @@ const SignUp = () => {
       })
         .then((res) => res.json())
         .then((imageData) => {
-          console.log(imageData);
           const image = imageData.data.display_url;
           const userInfo = {
             displayName: signUp.name,
@@ -88,7 +86,6 @@ const SignUp = () => {
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log(data);
                 setCreatedUserJwt(signUp.email);
                 if (data.acknowledged) {
                   toast.success("Create User Successfully");

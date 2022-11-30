@@ -16,7 +16,6 @@ const MyBuyer = () => {
       .then((res) => res.json())
       .then((data) => {
         setMyBuyer(data);
-        console.log(data);
       });
   }, [user?.email]);
   return (
@@ -38,30 +37,29 @@ const MyBuyer = () => {
           </thead>
           <tbody>
             {myBuyer.map((myBuyers) => (
-              <>
-                <tr>
-                  <th></th>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={myBuyers.userimage}
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">{myBuyers.userName}</div>
+              <tr>
+                <th></th>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={myBuyers.userimage}
+                          alt="Avatar Tailwind CSS Component"
+                        />
                       </div>
                     </div>
-                  </td>
-                  <td>{myBuyers.email}</td>
-                  <td>{myBuyers.Userphone}</td>
-                  <td>{myBuyers?.userInfo?.productName}</td>
-                  <th>{myBuyers.Userlocation}</th>
-                </tr>
-              </>
+                    <div>
+                      <div className="font-bold">{myBuyers.userName}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{myBuyers.email}</td>
+                <td>{myBuyers.Userphone}</td>
+                <td>{myBuyers?.userInfo?.productName}</td>
+                <th>{myBuyers.Userlocation}</th>
+                <th></th>
+              </tr>
             ))}
           </tbody>
         </table>

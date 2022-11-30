@@ -5,16 +5,10 @@ const Advertisement = () => {
   const [advertisement, setAdvertisement] = useState([]);
 
   fetch(
-    "https://revisual-server.vercel.app/showAdvertisement?advertisement=advertised",
-    {
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }
+    "https://revisual-server.vercel.app/showAdvertisement?advertisement=advertised"
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       setAdvertisement(data);
     });
 

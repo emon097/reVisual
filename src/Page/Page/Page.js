@@ -14,7 +14,6 @@ const Page = () => {
       .then((res) => res.json())
       .then((data) => {
         setProfile(data);
-        console.log(data);
       });
   }, [user?.email]);
   return (

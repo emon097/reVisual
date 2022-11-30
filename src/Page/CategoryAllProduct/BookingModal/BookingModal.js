@@ -4,7 +4,7 @@ import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 
-const BookingModal = ({ modalAllProduct }) => {
+const BookingModal = ({ modalAllProduct, setModalAllProduct }) => {
   const {
     register,
     handleSubmit,
@@ -59,8 +59,8 @@ const BookingModal = ({ modalAllProduct }) => {
       Userphone,
       userInfo,
     };
-    console.log(allinfos);
 
+    setModalAllProduct(null);
     fetch("https://revisual-server.vercel.app/myOrder", {
       method: "POST",
       headers: {
@@ -70,7 +70,6 @@ const BookingModal = ({ modalAllProduct }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast.success(
             "Product Order Successfully Please Pay Must be Complete"
@@ -100,6 +99,7 @@ const BookingModal = ({ modalAllProduct }) => {
               <p className="py-4">Your Email: {user?.email}</p>
               <p className="font-semibold mt-5">Location</p>
               <input
+                required
                 {...register("location")}
                 className="input m-2"
                 type="text "
@@ -108,6 +108,7 @@ const BookingModal = ({ modalAllProduct }) => {
               <br />
               <p className="font-semibold mt-5">Phone Number</p>
               <input
+                required
                 {...register("phone")}
                 className="input m-2"
                 type="text "
@@ -147,14 +148,10 @@ const BookingModal = ({ modalAllProduct }) => {
               </div>
               <div className="flex justify-between">
                 <p>
-                  {" "}
-                  <p className="font-bold">Brand Name:</p> {category}{" "}
+                  <p className="font-bold">Brand Name:</p> {category}
                 </p>
+
                 <p>
-                  <p className="font-bold">AvailableProduct:</p> {quantity}
-                </p>
-                <p>
-                  {" "}
                   <p className="font-bold ">Condition:</p>{" "}
                   <p className="bg-green-100 p-1 rounded-lg text-green-700">
                     {condition}
@@ -178,19 +175,14 @@ const BookingModal = ({ modalAllProduct }) => {
                       Seller Phone No: {phoneNo}
                     </div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">
-                      Seller Phone No: {phoneNo}
+                      Seller Email: {sellerEmail}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="flex justify-center mt-5">
-              <button
-                // onClick={() => handleBookingModal(modalAllProduct, user)}
-                className="btn-primary btn text-white"
-              >
-                Book Now
-              </button>
+              <button className="btn-primary btn text-white">Book Now</button>
             </div>
           </div>
         </div>

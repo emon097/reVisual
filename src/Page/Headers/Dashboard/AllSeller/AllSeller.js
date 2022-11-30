@@ -39,7 +39,6 @@ const AllSeller = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast.success("Seller Verified SuccessFully");
         }

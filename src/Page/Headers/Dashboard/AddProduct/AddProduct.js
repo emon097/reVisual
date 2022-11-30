@@ -32,7 +32,6 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((imgData) => {
-        console.log(imgData);
         const image = imgData.data.display_url;
         const paid = false;
         const allUser = {
@@ -53,7 +52,7 @@ const AddProduct = () => {
           dates,
           paid,
         };
-        console.log(allUser);
+
         fetch("https://revisual-server.vercel.app/allProduct", {
           method: "POST",
           headers: {
@@ -64,6 +63,7 @@ const AddProduct = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
+              allUser.reset();
               toast.success("Product Added Successfully");
             }
           });
