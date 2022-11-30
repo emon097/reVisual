@@ -61,7 +61,7 @@ const BookingModal = ({ modalAllProduct }) => {
     };
     console.log(allinfos);
 
-    fetch("http://localhost:5000/myOrder", {
+    fetch("https://revisual-server.vercel.app/myOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",

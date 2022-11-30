@@ -5,11 +5,7 @@ import BrandCategory from "./BrandCategory/BrandCategory";
 const Category = () => {
   const [Categorys, setCategorys] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/category", {
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch("https://revisual-server.vercel.app/category")
       .then((res) => res.json())
       .then((data) => {
         setCategorys(data);

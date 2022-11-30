@@ -5,7 +5,7 @@ const useBuyer = (email) => {
   const [isBuyerLoading, setIsBuyerLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/Buyer/${email}`, {
+      fetch(`https://revisual-server.vercel.app/users/Buyer/${email}`, {
         headers: {
           authorization: `bearer  ${localStorage.getItem("accessToken")}`,
         },

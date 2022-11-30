@@ -39,7 +39,7 @@ const SignUp = () => {
         role,
       };
       console.log(GoogleUserInfo);
-      fetch("http://localhost:5000/googleSignUp", {
+      fetch("https://revisual-server.vercel.app/googleSignUp", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -79,7 +79,7 @@ const SignUp = () => {
               email: signUp.email,
               role: signUp.role,
             };
-            fetch("http://localhost:5000/users", {
+            fetch("https://revisual-server.vercel.app/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

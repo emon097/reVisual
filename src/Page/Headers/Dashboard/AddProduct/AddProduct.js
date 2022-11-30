@@ -15,7 +15,7 @@ const AddProduct = () => {
   const [category, setCategory] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/category")
+    fetch("https://revisual-server.vercel.app/category")
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, []);
@@ -54,7 +54,7 @@ const AddProduct = () => {
           paid,
         };
         console.log(allUser);
-        fetch("http://localhost:5000/allProduct", {
+        fetch("https://revisual-server.vercel.app/allProduct", {
           method: "POST",
           headers: {
             "content-type": "application/json",

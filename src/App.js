@@ -42,7 +42,7 @@ function App() {
           path: "/allProduct/:category",
           loader: (params) =>
             fetch(
-              `http://localhost:5000/allProduct?category=${params.category}`
+              `https://revisual-server.vercel.app/allProduct?category=${params.category}`
             ),
           element: (
             <PrivetRoute>
@@ -111,11 +111,16 @@ function App() {
         {
           path: "/dashboard/payment/:id",
           loader: ({ params }) =>
-            fetch(`http://localhost:5000/paymentRoute/${params.id}`, {
-              headers: {
-                authorization: `bearer ${localStorage.getItem("accessToken")}`,
-              },
-            }),
+            fetch(
+              `https://revisual-server.vercel.app/paymentRoute/${params.id}`,
+              {
+                headers: {
+                  authorization: `bearer ${localStorage.getItem(
+                    "accessToken"
+                  )}`,
+                },
+              }
+            ),
           element: (
             <PrivetRoute>
               <Payment></Payment>
