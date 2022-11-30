@@ -20,7 +20,7 @@ const AddProduct = () => {
       .then((data) => setCategory(data));
   }, []);
 
-  const handleProduct = (data) => {
+  const handleProduct = (data, e) => {
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -32,6 +32,7 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((imgData) => {
+        console.log(imgData);
         const image = imgData.data.display_url;
         const paid = false;
         const allUser = {
@@ -52,7 +53,7 @@ const AddProduct = () => {
           dates,
           paid,
         };
-
+        console.log(allUser);
         fetch("https://revisual-server.vercel.app/allProduct", {
           method: "POST",
           headers: {
@@ -63,7 +64,7 @@ const AddProduct = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
-              allUser.reset();
+              e.target.reset();
               toast.success("Product Added Successfully");
             }
           });
