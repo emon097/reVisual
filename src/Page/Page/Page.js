@@ -17,8 +17,8 @@ const Page = () => {
       });
   }, [user?.email]);
   return (
-    <div class=" bg-secondary flex flex-wrap items-center justify-center">
-      <div class="container max-w-lg bg-white rounded dark:bg-gray-800 shadow-lg transform duration-200 easy-in-out m-12">
+    <div class=" bg-secondary  flex flex-wrap items-center justify-center">
+      <div class="container md:mx-28 lg:mx-28  bg-white rounded dark:bg-gray-800 shadow-lg transform duration-200 easy-in-out m-12">
         <div class="h-2/4 sm:h-64 overflow-hidden">
           <img class="w-full rounded-t" src={user.photoURL} alt="Cover" />
         </div>

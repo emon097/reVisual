@@ -63,7 +63,12 @@ const Navber = () => {
         </div>
         <div className="navbar-end">
           {user?.uid ? (
-            <button onClick={handleLogOut}>LogOut</button>
+            <button
+              className="btn btn-primary text-white"
+              onClick={handleLogOut}
+            >
+              LogOut
+            </button>
           ) : (
             <Link to="/signup" className="btn btn-primary text-white">
               SignUp

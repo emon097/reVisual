@@ -72,7 +72,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="bg-accent my-16 p-5 rounded-xl mx-28 ">
+    <div className="bg-accent md:mx-32 lg:mx-32 p-5 mt-5 rounded-xl ">
       <form onSubmit={handleSubmit(handleProduct)}>
         <div class="grid md:grid-cols-2 md:gap-6">
           <div class="relative z-0 mb-6 w-full group">
@@ -210,7 +210,7 @@ const AddProduct = () => {
                 {...register("image")}
                 class="form-control
                 block
-                w-full
+                w-1/2
                 px-3
                 py-1.5
                 text-base

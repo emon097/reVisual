@@ -27,7 +27,6 @@ const SignUp = () => {
   const handleGoogleSignUp = () => {
     googleRegister(provider).then((res) => {
       const user = res.user;
-      setCreatedUserJwt(user?.email);
       const displayName = user?.displayName;
       const photoURL = user?.photoURL;
       const email = user?.email;
@@ -46,7 +45,7 @@ const SignUp = () => {
         },
         body: JSON.stringify(GoogleUserInfo),
       }).then((data) => {
-        navigate("/");
+        setCreatedUserJwt(user?.email);
       });
     });
   };
